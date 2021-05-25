@@ -17,9 +17,10 @@ class Trainer():
             X: pandas DataFrame
             y: pandas Series
         """
-        self.pipeline = None
+        # self.pipeline = None
         self.X = X
         self.y = y
+        self.set_pipeline()
 
     def set_pipeline(self):
         """defines the pipeline as a class attribute"""
@@ -46,31 +47,28 @@ class Trainer():
 
     def run(self):
         '''returns a trained pipelined model'''
-        self.pipeline.fit(self.X_train, self.y_train)
-        return self.pipeline
+        self.pipeline.fit(self.X, self.y)
 
     def evaluate(self, X_test, y_test):
         """evaluates the pipeline on df_test and return the RMSE"""
         y_pred = self.pipeline.predict(X_test)
         rmse = compute_rmse(y_pred, y_test)
-        print(rmse)
         return rmse
 
 
-if __name__ == "__main__":
-    # get data
-    df = get_data()
-    # clean data
-    df = clean_data(df)
-    # set X and y
-    y = df.pop("fare_amount")
-    X = df
-    # hold out
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-    # train
-    trainer = Trainer(X_train, y_train)
-    trainer.set_pipeline()
-    trainer.run()
-    # evaluate
-    result = trainer.evaluate(X_test, y_test)
-    print(result)
+# if __name__ == "__main__":
+#     # get data
+#     df = get_data()
+#     # clean data
+#     df = clean_data(df)
+#     # set X and y
+#     y = df.pop("fare_amount")
+#     X = df
+#     # hold out
+#     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+#     # train
+#     trainer = Trainer(X_train, y_train)
+#     trainer.run()
+#     # evaluate
+#     result = trainer.evaluate(X_test, y_test)
+#     print(result)
