@@ -15,7 +15,7 @@ from .utils import compute_rmse
 
 
 MLFLOW_URI = "https://mlflow.lewagon.co/"
-EXPERIMENT_NAME = "[FR] [Tokyo] [bolinocroustibat] TaxiFareModel + 1.0"  # 🚨 replace with your country code, city, github_nickname and model name and version
+EXPERIMENT_NAME = "[JP] [Tokyo] [bolinocroustibat] TaxiFareModel + 1.0"  # 🚨 replace with your country code, city, github_nickname and model name and version
 
 
 class Trainer():
