@@ -24,6 +24,10 @@ memoized-property = "^1.0.3"
 coverage = "^5.5"
 pytest = "^6.2.4"
 yapf = "^0.31.0"
+category-encoders = "^2.2.2"
+psutil = "^5.8.0"
+xgboost = "^1.4.2"
+pygeohash = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.23.1"

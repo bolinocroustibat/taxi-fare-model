@@ -1,4 +1,5 @@
-# imports
+import joblib
+from termcolor import colored
 import mlflow
 from mlflow.tracking import MlflowClient
 import pandas as pd
@@ -62,6 +63,11 @@ class Trainer():
         rmse = compute_rmse(y_pred, y_test)
         return rmse
 
+    def save_model(self):
+        """ Save the trained model into a model.joblib file """
+        joblib.dump(self.pipeline, 'model.joblib')
+        print(colored("model.joblib saved locally", "green"))
+
 
     # MLflow
 
@@ -99,11 +105,13 @@ if __name__ == "__main__":
     # hold out
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
     # train
-    trainer = Trainer(X_train, y_train)
+    trainer = Trainer(X=X_train, y=y_train)
     trainer.run()
     # evaluate
-    rmse = trainer.evaluate(X_test, y_test)
-    print(rmse)
+    rmse = trainer.evaluate(X_test=X_test, y_test=y_test)
+    print(f"rmse: {rmse}")
     # Send to MLflow
     trainer.mlflow_log_param("estimator", "LinearRegression")
     trainer.mlflow_log_metric("rmse", rmse)
+    # Save locally
+    trainer.save_model()
