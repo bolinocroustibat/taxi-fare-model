@@ -1,7 +1,7 @@
 import mlflow
 from mlflow.tracking import MlflowClient
 
-EXPERIMENT_NAME = "test_experiment"
+EXPERIMENT_NAME = "[JP] [Tokyo] [bolinocroustibat] TaxiFareModel + 1.1"
 
 # Indicate mlflow to log to remote server
 mlflow.set_tracking_uri("https://mlflow.lewagon.co/")
